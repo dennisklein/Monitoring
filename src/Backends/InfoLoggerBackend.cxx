@@ -24,7 +24,8 @@ inline unsigned long InfoLoggerBackend::convertTimestamp(const std::chrono::time
   ).count();
 }
 
-InfoLoggerBackend::InfoLoggerBackend()
+InfoLoggerBackend::InfoLoggerBackend(const std::string name, const BackendVersion version, const std::string maintainer, const std::string homepage)
+  : Backend(name, version, maintainer, homepage)
 {
   MonLogger::Get() << "Local InfoLogger backend initialized" << MonLogger::End();
 }

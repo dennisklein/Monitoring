@@ -18,7 +18,8 @@ namespace Monitoring
 namespace Backends
 {
 
-ApMonBackend::ApMonBackend(const std::string& path)
+ApMonBackend::ApMonBackend(const std::string name, const BackendVersion version, const std::string maintainer, const std::string homepage, const std::string& path)
+  : Backend(name, version, maintainer, homepage)
 {
   try {
     mApMon = std::make_unique<ApMon>(const_cast<char*>(path.c_str()));

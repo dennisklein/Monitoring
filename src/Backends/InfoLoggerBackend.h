@@ -25,8 +25,8 @@ namespace Backends
 class InfoLoggerBackend final : public Backend
 {
   public:
-    /// Default constructor
-    InfoLoggerBackend();
+    /// Constructor
+    InfoLoggerBackend(const std::string name, const BackendVersion version, const std::string maintainer, const std::string homepage);
  
     /// Default destructor
     ~InfoLoggerBackend() = default;
@@ -56,6 +56,14 @@ class InfoLoggerBackend final : public Backend
 
     //AliceO2::InfoLogger::InfoLogger mInfoLogger;
 };
+
+REGISTER_O2MON_BACKEND(
+    InfoLoggerBackend,                           // Class name
+    info_logger,                                 // Backend name (string, lower case chars only)
+    (BackendVersion{1,0,0}),                     // Version
+    "Adam Wegrzynek <adam.wegrzynek@cern.ch>",   // Maintainer
+    "https://github.com/AliceO2Group/Monitoring" // Homepage
+)
 
 } // namespace Backends
 } // namespace Monitoring

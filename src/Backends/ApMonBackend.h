@@ -32,7 +32,7 @@ class ApMonBackend final : public Backend
   public:
     /// Constructs AppMon backend
     /// \param configurationFile 	filepath to ApMonBackend configuration file
-    ApMonBackend(const std::string& path);
+    ApMonBackend(const std::string name, const BackendVersion version, const std::string maintainer, const std::string homepage, const std::string& path);
 
     /// Default destructor
     ~ApMonBackend() = default;
@@ -60,6 +60,14 @@ class ApMonBackend final : public Backend
     std::unique_ptr<ApMon> mApMon; ///< ApMon object
     std::string entity; ///< MonALISA entity, created out of global tags
 };
+
+REGISTER_O2MON_BACKEND(
+    ApMonBackend,                                // Class name
+    apmon,                                       // Backend name (string, lower case chars only)
+    (BackendVersion{1,0,0}),                     // Version
+    "Adam Wegrzynek <adam.wegrzynek@cern.ch>",   // Maintainer
+    "https://github.com/AliceO2Group/Monitoring" // Homepage
+)
 
 } // namespace Backends
 } // namespace Monitoring

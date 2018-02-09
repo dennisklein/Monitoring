@@ -19,14 +19,16 @@ namespace Monitoring
 namespace Backends
 {
 
-InfluxDB::InfluxDB(const std::string& host, unsigned int port)
+InfluxDB::InfluxDB(const std::string name, const BackendVersion version, const std::string maintainer, const std::string homepage, const std::string& host, unsigned int port)
+  : Backend(name, version, maintainer, homepage)
 {
   transport = std::make_unique<Transports::UDP>(host, port);
   MonLogger::Get() << "InfluxDB/UDP backend initialized"
                    << " ("<< host << ":" << port << ")" << MonLogger::End();
 }
 
-InfluxDB::InfluxDB(const std::string& host, unsigned int port, const std::string& path)
+InfluxDB::InfluxDB(const std::string name, const BackendVersion version, const std::string maintainer, const std::string homepage, const std::string& host, unsigned int port, const std::string& path)
+  : Backend(name, version, maintainer, homepage)
 {
   transport = std::make_unique<Transports::HTTP>(
     "http://" + host + ":" + std::to_string(port) + "/?" + path

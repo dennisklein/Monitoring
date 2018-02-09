@@ -68,6 +68,7 @@ set(MODULE_NAME "Monitoring")
 O2_SETUP(NAME ${MODULE_NAME})
 
 set(SRCS
+        src/Backend.cxx
         src/Collector.cxx
         src/Metric.cxx
         src/Backends/InfoLoggerBackend.cxx

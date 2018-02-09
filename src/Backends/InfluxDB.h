@@ -30,13 +30,13 @@ class InfluxDB final : public Backend
     /// Constructor for both HTTP and  UDP transports
     /// \param hostname  InfluxDB UDP endpoint hostname
     /// \param port      InfluxDB UDP endpoint port number
-    InfluxDB(const std::string& host, unsigned int port);
+    InfluxDB(const std::string name, const BackendVersion version, const std::string maintainer, const std::string homepage, const std::string& host, unsigned int port);
 
     /// Constructor for both HTTP and  UDP transports
     /// \param hostname  InfluxDB UDP endpoint hostname
     /// \param port      InfluxDB UDP endpoint port number
     /// \param path	 Query path
-    InfluxDB(const std::string& host, unsigned int port, const std::string& path);
+    InfluxDB(const std::string name, const BackendVersion version, const std::string maintainer, const std::string homepage, const std::string& host, unsigned int port, const std::string& path);
 
     /// Default destructor
     ~InfluxDB() = default;
@@ -73,6 +73,14 @@ class InfluxDB final : public Backend
     /// \param type	type of the metric
     void prepareValue(std::string& value, int type);
 };
+
+REGISTER_O2MON_BACKEND(
+    InfluxDB,                                    // Class name
+    influxdb,                                    // Backend name (string, lower case chars only)
+    (BackendVersion{1,0,0}),                     // Version
+    "Adam Wegrzynek <adam.wegrzynek@cern.ch>",   // Maintainer
+    "https://github.com/AliceO2Group/Monitoring" // Homepage
+)
 
 } // namespace Backends
 } // namespace Monitoring

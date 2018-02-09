@@ -32,7 +32,7 @@ class Flume final : public Backend
     /// Constructor, uses UDP transport
     /// \param hostname  Flume HTTP endpoint hostanme
     /// \param port      Flume HTTP endpoint port number
-    Flume(const std::string& host, unsigned int port);
+    Flume(const std::string name, const BackendVersion version, const std::string maintainer, const std::string homepage, const std::string& host, unsigned int port);
 
     /// Default destructor
     ~Flume() = default;
@@ -70,6 +70,14 @@ class Flume final : public Backend
     /// \return JSON serializes metric
     std::string metricToJson(const Metric& metric); 
 };
+
+REGISTER_O2MON_BACKEND(
+    Flume,                                       // Class name
+    flume,                                       // Backend name (string, lower case chars only)
+    (BackendVersion{1,0,0}),                     // Version
+    "Adam Wegrzynek <adam.wegrzynek@cern.ch>",   // Maintainer
+    "https://github.com/AliceO2Group/Monitoring" // Homepage
+)
 
 } // namespace Backends
 } // namespace Monitoring

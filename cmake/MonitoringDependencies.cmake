@@ -19,6 +19,7 @@ o2_define_bucket(
     o2_monitoring_bucket
 
     DEPENDENCIES
+    dl
     ${Boost_SYSTEM_LIBRARY}
     ${Boost_FILESYSTEM_LIBRARY}
     ${Boost_PROGRAM_OPTIONS_LIBRARY}
